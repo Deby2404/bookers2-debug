@@ -18,7 +18,7 @@ end
   get 'followers' => 'relationships#followers', as: 'followers'
 
 end
-  get 'users/search', to: 'searchs#search'
+  get '/search', to: 'searchs#search'
 end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
