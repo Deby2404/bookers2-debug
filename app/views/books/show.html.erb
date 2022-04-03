@@ -1,3 +1,4 @@
+<%= render 'searchs/form' %>
 <div class='container'>
   <div class='row'>
     <div class='col-md-3'>
@@ -25,10 +26,10 @@
           <% end %>
         </tr>
       </table>
-      
+
       <%= render "book_comments/index", book: @book %>
       <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
-    
+
     </div>
   </div>
 </div>
