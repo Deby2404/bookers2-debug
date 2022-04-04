@@ -1,0 +1,4 @@
+<%= form_with model:[book, book_comment],url: book_book_comments_path(book_id: book.id), local: false do |f| %>
+ <%= f.text_area :comment, rows:'5', placeholder: "comments here", class: "w-100" %>
+ <%= f.submit "send", class: 'btn btn-success pull-right' %>
+<% end %>
