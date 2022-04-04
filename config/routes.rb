@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'chats/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
 
@@ -13,7 +14,9 @@ Rails.application.routes.draw do
 end
   resources :users, only: [:index,:show,:edit,:update] do
   resource :relationships, only: [:create, :destroy]
+  resources :chats, only: [:create]
 
+  get 'chat/:id', to: 'chats#show', as: 'chat'
   get 'followings' => 'relationships#followings', as: 'followings'
   get 'followers' => 'relationships#followers', as: 'followers'
 
