@@ -14,13 +14,14 @@ Rails.application.routes.draw do
 end
   resources :users, only: [:index,:show,:edit,:update] do
   resource :relationships, only: [:create, :destroy]
-  resources :chats, only: [:create]
+
 
 
   get 'followings' => 'relationships#followings', as: 'followings'
   get 'followers' => 'relationships#followers', as: 'followers'
 
 end
+  resources :chats, only: [:create]
   get '/search', to: 'searchs#search'
   get 'chat/:id', to: 'chats#show', as: 'chat'
 end
