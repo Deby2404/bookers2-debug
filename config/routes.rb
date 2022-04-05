@@ -16,12 +16,13 @@ end
   resource :relationships, only: [:create, :destroy]
   resources :chats, only: [:create]
 
-  get 'chat/:id', to: 'chats#show', as: 'chat'
+
   get 'followings' => 'relationships#followings', as: 'followings'
   get 'followers' => 'relationships#followers', as: 'followers'
 
 end
   get '/search', to: 'searchs#search'
+  get 'chat/:id', to: 'chats#show', as: 'chat'
 end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
