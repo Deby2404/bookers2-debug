@@ -21,9 +21,9 @@ end
   get 'followers' => 'relationships#followers', as: 'followers'
 
 end
-  resources :chats, only: [:create]
+  resources :chats, only: [:create, :show]
   get '/search', to: 'searchs#search'
-  get 'chat/:id', to: 'chats#show', as: 'chat'
+  
 end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
