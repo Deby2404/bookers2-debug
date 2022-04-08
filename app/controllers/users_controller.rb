@@ -7,13 +7,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-
   end
 
   def index
     @users = User.all
     @book = Book.new
-
   end
 
   def edit
@@ -24,7 +22,6 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
 
   def update
     if @user.update(user_params)
@@ -46,10 +43,10 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-  
+
   def ensure_guest_user
-   if @user = User.find(params[:id])
-    redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
-   end
+    if @user = User.find(params[:id])
+      redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
   end
 end

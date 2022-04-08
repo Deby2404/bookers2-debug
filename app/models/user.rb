@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   has_many :books
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
@@ -13,16 +12,16 @@ class User < ApplicationRecord
 
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  
+
   has_many :rooms, through: :user_rooms
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
-  
+
   has_many :view_counts, dependent: :destroy
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction, length: {maximum: 50 }
+  validates :introduction, length: { maximum: 50 }
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -43,13 +42,11 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   def self.guest
     find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
-     user.password = SecureRandom.urlsafe_base64
-     user.name = "guestuser"
-    end  
-  end  
-
-
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
 end

@@ -13,13 +13,13 @@ class BooksController < ApplicationController
   end
 
   def index
-    to  = Time.current.at_end_of_day
-    from  = (to - 6.day).at_beginning_of_day
+    to = Time.current.at_end_of_day
+    from = (to - 6.day).at_beginning_of_day
     @books = Book.includes(:favorited_users).
-      sort {|a,b|
+      sort do |a, b|
         b.favorited_users.includes(:favorites).where(created_at: from...to).size <=>
         a.favorited_users.includes(:favorites).where(created_at: from...to).size
-      }
+      end
     @new_book = Book.new
   end
 
@@ -36,7 +36,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
-    if  @book.user == current_user
+    if @book.user == current_user
       render "edit"
     else
       redirect_to books_path
@@ -71,5 +71,3 @@ class BooksController < ApplicationController
     end
   end
 end
-
-
